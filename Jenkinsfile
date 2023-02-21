@@ -5,10 +5,10 @@ pipeline {
        IMAGE_TAG = "latest"
        // PORT_EXPOSED = "80" à paraméter dans le job obligatoirement
        APP_NAME = "nicolas"
-       STG_API_ENDPOINT = "51.254.103.147:1993"
-       STG_APP_ENDPOINT = "51.254.103.147:80"
-       PROD_API_ENDPOINT = "51.178.37.209:1993"
-       PROD_APP_ENDPOINT = "51.178.37.209:80"
+       STG_API_ENDPOINT = "http://51.254.103.147:1993"
+       STG_APP_ENDPOINT = "http://51.254.103.147:80"
+       PROD_API_ENDPOINT = "http://51.178.37.209:1993"
+       PROD_APP_ENDPOINT = "http://51.178.37.209:80"
        INTERNAL_PORT = "5000"
        EXTERNAL_PORT = "${PORT_EXPOSED}"
        CONTAINER_IMAGE = "${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG}"
@@ -91,7 +91,7 @@ pipeline {
           script {
             sh """
               echo  {\\"your_name\\":\\"${APP_NAME}\\",\\"container_image\\":\\"${CONTAINER_IMAGE}\\", \\"external_port\\":\\"${EXTERNAL_PORT}\\", \\"internal_port\\":\\"${INTERNAL_PORT}\\"}  > data.json 
-              curl -X POST http://${STG_API_ENDPOINT}/staging -H 'Content-Type: application/json'  --data-binary @data.json 
+              curl -X POST ${STG_API_ENDPOINT}/staging -H 'Content-Type: application/json'  --data-binary @data.json 
             """
           }
         }
