@@ -4,7 +4,7 @@ pipeline {
        IMAGE_NAME = "alpinehelloworld"
        IMAGE_TAG = "latest"
        // PORT_EXPOSED = "80" à paraméter dans le job obligatoirement
-       APP_NAME = "ulrich"
+       APP_NAME = "nicolas"
        STG_API_ENDPOINT = "http://51.254.103.147:1993"
        STG_APP_ENDPOINT = "http://51.254.103.147:80"
        PROD_API_ENDPOINT = "http://51.178.37.209:1993"
